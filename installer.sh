@@ -5,7 +5,7 @@ biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 #########################
 
 BURIQ () {
-    curl -sS https://raw.githubusercontent.com/givpn/bot_panel/master/access > /root/tmp
+    curl -sS https://raw.githubusercontent.com/RMBL-ZERO/bot_panel/master/access > /root/tmp
     data=( `cat /root/tmp | grep -E "^### " | awk '{print $2}'` )
     for user in "${data[@]}"
     do
@@ -23,7 +23,7 @@ BURIQ () {
 }
 
 MYIP=$(curl -sS ipv4.icanhazip.com)
-Name=$(curl -sS https://raw.githubusercontent.com/givpn/bot_panel/master/access | grep $MYIP | awk '{print $2}')
+Name=$(curl -sS https://raw.githubusercontent.com/RMBL-ZERO/bot_panel/master/access | grep $MYIP | awk '{print $2}')
 echo $Name > /usr/local/etc/.$Name.ini
 CekOne=$(cat /usr/local/etc/.$Name.ini)
 
@@ -40,7 +40,7 @@ fi
 
 PERMISSION () {
     MYIP=$(curl -sS ipv4.icanhazip.com)
-    IZIN=$(curl -sS https://raw.githubusercontent.com/givpn/bot_panel/master/access | awk '{print $4}' | grep $MYIP)
+    IZIN=$(curl -sS https://raw.githubusercontent.com/RMBL-ZERO/bot_panel/master/access | awk '{print $4}' | grep $MYIP)
     if [ "$MYIP" = "$IZIN" ]; then
     Bloman
     else
@@ -108,7 +108,7 @@ EOF
 fun_botOnOff() {
 dircreate
         [[ ! -f /etc/.maAsiss/bot.conf ]] && {
-        echo -e "givpn Bot Panel Installer
+        echo -e "RMBL-ZERO Bot Panel Installer
         "
         [[ ! -f /root/ResBotAuth ]] && {
         echo -ne "Input your Bot TOKEN : "
@@ -118,17 +118,17 @@ dircreate
         read adm_ids
         echo "Admin_ID=$adm_ids" >> /root/ResBotAuth
         }
-        echo -ne "Username admin panel use '@' [Ex: @givpn] : "
+        echo -ne "Username admin panel use '@' [Ex: @rmblvpn] : "
         read admin_pnl
-        [[ -z $admin_pnl ]] && admin_pnl="@givpn"
+        [[ -z $admin_pnl ]] && admin_pnl="@rmblvpn"
         echo ""
         echo -ne "Limit trial for reseller create user trial [default:1] : "
         read limit_pnl
         [[ -z $limit_pnl ]] && limit_pnl="1"
         echo ""
-        echo -ne "Your name store [dafult: givpn-STORE] : "
+        echo -ne "Your name store [dafult: rmblvpn-STORE] : "
         read store_pnl
-        [[ -z $store_pnl ]] && store_pnl="givpn-STORE"
+        [[ -z $store_pnl ]] && store_pnl="rmblvpn-STORE"
         echo ""
 cat <<-EOF >/etc/.maAsiss/bot.conf
 admin_panel : $admin_pnl
@@ -139,30 +139,30 @@ EOF
         echo -e "Info...\n"
         fun_bot1() {
             [[ ! -e "/etc/.maAsiss/.Shellbtsss" ]] && {
-				wget -qO- https://raw.githubusercontent.com/givpn/bot_panel/master/ShellBot.sh >/etc/.maAsiss/.Shellbtsss
+				wget -qO- https://raw.githubusercontent.com/RMBL-ZERO/bot_panel/master/ShellBot.sh >/etc/.maAsiss/.Shellbtsss
 			}
-			[[ "$(grep -wc "givpn_bot" "/etc/rc.local")" = '0' ]] && {
+			[[ "$(grep -wc "rmblvpn1_bot" "/etc/rc.local")" = '0' ]] && {
 			    sed -i '$ i\screen -dmS givpn_bot bbt' /etc/rc.local >/dev/null 2>&1
 			}
         }
-        screen -dmS givpn_bot bbt >/dev/null 2>&1
+        screen -dmS rmblvpn1_bot bbt >/dev/null 2>&1
         fun_bot1
-        [[ $(ps x | grep "givpn_bot" | grep -v grep | wc -l) != '0' ]] && echo -e "\nBot successfully activated !" || echo -e "\nError1! Information not valid !"
+        [[ $(ps x | grep "rmblvpn1_bot" | grep -v grep | wc -l) != '0' ]] && echo -e "\nBot successfully activated !" || echo -e "\nError1! Information not valid !"
         sleep 2
         menu
         } || {
        clear
         echo -e "Info...\n"
         fun_bot2() {
-            screen -r -S "givpn_bot" -X quit >/dev/null 2>&1
-            [[ $(grep -wc "givpn_bot" /etc/rc.local) != '0' ]] && {
-                sed -i '/givpn_bot/d' /etc/rc.local
+            screen -r -S "rmblvpn1_bot" -X quit >/dev/null 2>&1
+            [[ $(grep -wc "rmblvpn1_bot" /etc/rc.local) != '0' ]] && {
+                sed -i '/rmblvpn1_bot/d' /etc/rc.local
             }
             rm -f /etc/.maAsiss/bot.conf
             sleep 1
         }
         fun_bot2
-        echo -e "\nBot givpn Stopped!"
+        echo -e "\nBot rmblvpn1 Stopped!"
         sleep 2
         menu
     }
