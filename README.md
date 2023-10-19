@@ -1,1 +1,1 @@
-# bot_panel
+rm -f /usr/bin/bbt && rm -f /usr/bin/installbot && wget -q -O /usr/bin/installbot "https://raw.githubusercontent.com/RMBL-ZERO/bot_panel/master/installer.sh" && chmod +x /usr/bin/installbot && wget -q -O /usr/bin/bbt "https://raw.githubusercontent.com/RMBL-ZERO/bot_panel/master/bbt.sh" && chmod +x /usr/bin/bbt
